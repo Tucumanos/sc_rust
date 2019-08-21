@@ -1,4 +1,4 @@
-//Test
+//Version en espanol por Cadaver 20/08/19
 #include "utils"
 
 void upgradeMenuCallback(CTextMenu@ menu, CBasePlayer@ plr, int page, const CTextMenuItem@ item)
@@ -25,7 +25,7 @@ void upgradeMenuCallback(CTextMenu@ menu, CBasePlayer@ plr, int page, const CTex
 	
 	if (hammer is null)
 	{
-		g_PlayerFuncs.PrintKeyBindingString(plr, "You no longer have a hammer");
+		g_PlayerFuncs.PrintKeyBindingString(plr, "Ya no tienes el martillo");
 		return;
 	}
 	
@@ -311,9 +311,9 @@ class weapon_hammer : ScriptBasePlayerWeaponEntity
 				updateBuildPlaceholder();
 				
 			if (upgrading and (!h_lookEnt.IsValid() or (getCentroid(h_lookEnt) - plr.pev.origin).Length() > upgradeDist))
-				cancelUpgrade("Part went out of range");
+				cancelUpgrade("Construccion fuera de rango");
 			if (fusing and (!h_buildEnt2.IsValid() or (getCentroid(h_buildEnt2) - plr.pev.origin).Length() > fuseDist))
-				cancelFuse("Part went out of range");
+				cancelFuse("Construccion fuera de rango");
 			
 			if (lastHudUpdate < g_Engine.time + 0.05f)
 			{
@@ -340,12 +340,12 @@ class weapon_hammer : ScriptBasePlayerWeaponEntity
 					if (!g_build_anywhere)
 					{
 						g_PlayerFuncs.HudMessage(plr, params, 
-							"Build Points:\n" + (state.maxPoints(zoneid)-state.getNumParts(zoneid)) + " / " + state.maxPoints(zoneid));
+							"Puntos de construccion:\n" + (state.maxPoints(zoneid)-state.getNumParts(zoneid)) + " / " + state.maxPoints(zoneid));
 					}
 					else
 					{
 						int total = state.getNumParts(-1337);
-						g_PlayerFuncs.HudMessage(plr, params, "Built Parts:\n" + total + " / 500");
+						g_PlayerFuncs.HudMessage(plr, params, "Puntos de construccion:\n" + total + " / 500");
 					}
 				}
 			}	
@@ -441,7 +441,7 @@ class weapon_hammer : ScriptBasePlayerWeaponEntity
 				}
 				else
 				{
-					g_PlayerFuncs.PrintKeyBindingString(plr, "You need more " + g_items[cost.type].title);
+					g_PlayerFuncs.PrintKeyBindingString(plr, "Necesitas mas " + g_items[cost.type].title);
 				}
 			}
 		}
@@ -594,7 +594,7 @@ class weapon_hammer : ScriptBasePlayerWeaponEntity
 		{
 			Item@ item = getItemByClassname(g_part_info[itemId].copy_ent);
 			if (debug_mode)
-				println("repair a " + item.title);
+				println("reparar a " + item.title);
 			if (item !is null and item.costs.length() > 0)
 				return item.costs[0];
 		}
@@ -623,7 +623,7 @@ class weapon_hammer : ScriptBasePlayerWeaponEntity
 		
 		state.initMenu(plr, upgradeMenuCallback);
 
-		state.menu.SetTitle("Upgrade to:\n");
+		state.menu.SetTitle("Mejorar a:\n");
 		string woodCost = " (" + getUpgradeCost(0, h_lookEnt).amt + " " + getUpgradeItem(0).title + ")";
 		string stoneCost = " (" + getUpgradeCost(1, h_lookEnt).amt + " " + getUpgradeItem(1).title + ")";
 		string metalCost = " (" + getUpgradeCost(2, h_lookEnt).amt + " " + getUpgradeItem(2).title + ")";
@@ -633,10 +633,10 @@ class weapon_hammer : ScriptBasePlayerWeaponEntity
 			
 		if (isUpgradable(h_lookEnt))
 		{
-			state.menu.AddItem("Wood" + woodCost, any("wood"));
-			state.menu.AddItem("Stone" + stoneCost, any("stone"));
+			state.menu.AddItem("Madera" + woodCost, any("wood"));
+			state.menu.AddItem("Piedra" + stoneCost, any("stone"));
 			state.menu.AddItem("Metal" + metalCost, any("metal"));
-			state.menu.AddItem("Armor" + armorCost, any("armor"));
+			state.menu.AddItem("Armored" + armorCost, any("armor"));
 		}
 		else
 		{
@@ -649,7 +649,7 @@ class weapon_hammer : ScriptBasePlayerWeaponEntity
 		state.menu.AddItem("", any(""));
 		state.menu.AddItem("", any(""));
 		state.menu.AddItem("", any(""));
-		state.menu.AddItem("DESTROY", any("destroy"));
+		state.menu.AddItem("DESTRUIR", any("destroy"));
 		
 		state.openMenu(plr);
 	}
@@ -675,14 +675,14 @@ class weapon_hammer : ScriptBasePlayerWeaponEntity
 			int mat = getMaterialTypeInt(lookEnt);
 			if (mat == material)
 			{
-				array<string> material_names = {"Wood", "Stone", "Metal", "Armor"};
-				g_PlayerFuncs.PrintKeyBindingString(plr, "This part is already made of " + material_names[mat]);
+				array<string> material_names = {"madera", "piedra", "metal", "armored"};
+				g_PlayerFuncs.PrintKeyBindingString(plr, "Esta parte ya es de " + material_names[mat]);
 				upgrading = false;
 				return;
 			}
 			if (mat > material)
 			{
-				g_PlayerFuncs.PrintKeyBindingString(plr, "Downgrading not allowed");
+				g_PlayerFuncs.PrintKeyBindingString(plr, "No se puede desmejorar");
 				upgrading = false;
 				return;
 			}
@@ -693,7 +693,7 @@ class weapon_hammer : ScriptBasePlayerWeaponEntity
 				RawItem cost = getUpgradeCost(material, lookEnt);
 				if (getItemCount(plr, cost.type) < cost.amt)
 				{
-					g_PlayerFuncs.PrintKeyBindingString(plr, "You need more " + materialItem.title);
+					g_PlayerFuncs.PrintKeyBindingString(plr, "Necesitas mas " + materialItem.title);
 					upgrading = false;
 					return;
 				}
@@ -728,7 +728,7 @@ class weapon_hammer : ScriptBasePlayerWeaponEntity
 			showTip(EHandle(plr), TIP_FIRE_RESIST);
 		}
 		else
-			g_PlayerFuncs.PrintKeyBindingString(getPlayer(), "Hammer not active");
+			g_PlayerFuncs.PrintKeyBindingString(getPlayer(), "Martillo no activado");
 			
 		upgrading = false;
 	}
@@ -752,7 +752,7 @@ class weapon_hammer : ScriptBasePlayerWeaponEntity
 					return;
 				}
 			}
-			g_PlayerFuncs.PrintKeyBindingString(plr, "You can only destroy parts you built");
+			g_PlayerFuncs.PrintKeyBindingString(plr, "Solo puedes destruir tus construcciones");
 		}
 	}
 	
@@ -880,7 +880,7 @@ class weapon_hammer : ScriptBasePlayerWeaponEntity
 		PlayerState@ state = getPlayerStateBySteamID(ent.pev.noise1, ent.pev.noise2);
 		if (!g_build_anywhere and state.getNumParts(fuseZone) + parts.length()-1 > state.maxPoints(fuseZone))
 		{
-			cancelFuse("Not enough build points to separate!");
+			cancelFuse("No hay suficientes puntos de construccion para separar");
 			return;
 		}
 		if (state !is null)
@@ -908,7 +908,7 @@ class weapon_hammer : ScriptBasePlayerWeaponEntity
 		{
 			if (parts[i] is null)
 			{
-				println("Failed to get adjacent square during separation");
+				println("Error al obtener el cuadrado adyacente durante la separacion");
 				continue;
 			}
 			parts[i].pev.max_health = getMaterialMaxHealth(imat);
@@ -924,7 +924,7 @@ class weapon_hammer : ScriptBasePlayerWeaponEntity
 		
 		g_SoundSystem.PlaySound(getPlayer().edict(), lastChannel, separateSound, 1.0f, 1.0f, 0, Math.RandomLong(90, 110));
 
-		cancelFuse("Fused parts were separated");
+		cancelFuse("Las partes fusionadas fueron separadas");
 	}
 	
 	void Fuse()
@@ -934,13 +934,13 @@ class weapon_hammer : ScriptBasePlayerWeaponEntity
 		
 		if (part1 is null or part2 is null)
 		{
-			cancelFuse("One of the selected parts was destroyed");
+			cancelFuse("Una de las partes fue destruida");
 			return;
 		}
 			
 		if (part1.pev.colormap != part2.pev.colormap)
 		{
-			cancelFuse("Can only fuse parts of the same type");
+			cancelFuse("Tienen que ser del mismo tipo");
 			return;
 		}
 	
@@ -955,7 +955,7 @@ class weapon_hammer : ScriptBasePlayerWeaponEntity
 			if (isize1 > 1)
 				Separate(part1);
 			else
-				cancelFuse("Can't fuse a part with itself");
+				cancelFuse("No se puede fusionar la misma parte");
 			return;
 		}
 		
@@ -964,13 +964,13 @@ class weapon_hammer : ScriptBasePlayerWeaponEntity
 		
 		if (state1.plr.GetEntity() != state2.plr.GetEntity())
 		{
-			cancelFuse("Parts must be owned by the same player");
+			cancelFuse("No se puede fusionar piezas que pertenezcan a otros jugadores");
 			return;
 		}
 		
 		if (mergeSize > 4)
 		{
-			cancelFuse("Can't fuse more than 4 parts together");
+			cancelFuse("o se pueden fusionar mas de 4 partes juntas");
 			return;
 		}
 		
@@ -978,14 +978,14 @@ class weapon_hammer : ScriptBasePlayerWeaponEntity
 		string mat2 = getMaterialType(part2);
 		if (material != mat2)
 		{
-			cancelFuse("Can only fuse parts of the same material");
+			cancelFuse("Tienen que ser del mismo material");
 			return;
 		}
 		
 		int fuseZone = getBuildZone(part1);
 		if (fuseZone != getBuildZone(part2))
 		{
-			cancelFuse("Can only fuse parts in the same zone");
+			cancelFuse("Solo se pueden fusionar piezas en la misma zona");
 			return;
 		}
 		
@@ -1018,7 +1018,7 @@ class weapon_hammer : ScriptBasePlayerWeaponEntity
 			{
 				if (abs(dist - 128) > EPSILON)
 				{
-					cancelFuse("Can only fuse adjacent pieces");
+					cancelFuse("Solo se pueden fusionar piezas adyacentes");
 					return;
 				}
 
@@ -1042,7 +1042,7 @@ class weapon_hammer : ScriptBasePlayerWeaponEntity
 				if ((abs(dist - 128) > EPSILON and abs(dist - 181.019) > EPSILON and abs(dist - 256) > EPSILON and abs(dist - 384) > EPSILON) or
 					(abs(dist - 181.019) < EPSILON and DotProduct(p2_right, g_Engine.v_right) > 0.9f))
 				{
-					cancelFuse("Can only fuse adjacent pieces");
+					cancelFuse("Solo se pueden fusionar piezas adyacentes");
 					return;
 				}
 				
@@ -1061,7 +1061,7 @@ class weapon_hammer : ScriptBasePlayerWeaponEntity
 						@part1 = getPartAtPos(part1.pev.origin + g_Engine.v_right*128);
 						if (part1 is null)
 						{
-							println("Failed to get adjacent square during fusion");
+							println("Error al obtener el cuadrado adyacente durante la fusion");
 							return;
 						}
 						@part1 = respawnPart(part1.pev.team);
@@ -1086,7 +1086,7 @@ class weapon_hammer : ScriptBasePlayerWeaponEntity
 				
 				if ( abs(DotProduct(dir, g_Engine.v_forward)) > EPSILON and newSize == "_4x1" and !justDoIt)
 				{
-					cancelFuse("Can only fuse adjacent pieces");
+					cancelFuse("Solo se pueden fusionar piezas adyacentes");
 					return;
 				}
 				
@@ -1098,12 +1098,12 @@ class weapon_hammer : ScriptBasePlayerWeaponEntity
 				
 				if (abs(dist - 128) > EPSILON and (DotProduct(dir, -g_Engine.v_right) > 0.9f and abs(dist - 256) > EPSILON)) //CHECK
 				{
-					cancelFuse("Can only fuse adjacent pieces");
+					cancelFuse("Solo se pueden fusionar piezas adyacentes");
 					return;
 				}
 				if (abs(DotProduct(dir, -g_Engine.v_forward)) > 0.1f) // behind
 				{
-					cancelFuse("Fused pieces must form a rectangle");
+					cancelFuse("Las piezas deben formar un rectangulo");
 					return;
 				}
 
@@ -1123,12 +1123,12 @@ class weapon_hammer : ScriptBasePlayerWeaponEntity
 				
 				if (abs(dist - 128) > EPSILON and (DotProduct(dir, -g_Engine.v_right) > 0.9f and abs(dist - 384) > EPSILON)) // CHECK
 				{
-					cancelFuse("Can only fuse adjacent pieces");
+					cancelFuse("Solo se pueden fusionar piezas adyacentes");
 					return;
 				}
 				if (abs(DotProduct(dir, -g_Engine.v_forward)) > 0.1f) // behind
 				{
-					cancelFuse("Fused pieces must form a rectangle");
+					cancelFuse("Las piezas deben formar un rectangulo");
 					return;
 				}
 
@@ -1144,7 +1144,7 @@ class weapon_hammer : ScriptBasePlayerWeaponEntity
 			}
 			else
 			{
-				cancelFuse("Fused pieces must form a rectangle");
+				cancelFuse("Las piezas deben formar un rectangulo");
 				return;
 			}
 		}
@@ -1154,7 +1154,7 @@ class weapon_hammer : ScriptBasePlayerWeaponEntity
 			{
 				if (abs(dist - 73.899) > EPSILON)
 				{
-					cancelFuse("Can only fuse adjacent pieces");
+					cancelFuse("Solo se pueden fusionar piezas adyacentes");
 					return;
 				}
 
@@ -1177,7 +1177,7 @@ class weapon_hammer : ScriptBasePlayerWeaponEntity
 					(DotProduct(dir, -g_Engine.v_right) > 0.5f and abs(dist - 128) < EPSILON) or
 					(DotProduct(dir, g_Engine.v_forward) > 0.7f and DotProduct(dir, -g_Engine.v_right) > 0.2f))
 				{
-					cancelFuse("Can only fuse adjacent pieces");
+					cancelFuse("Solo se pueden fusionar piezas adyacentes");
 					return;
 				}
 				
@@ -1205,7 +1205,7 @@ class weapon_hammer : ScriptBasePlayerWeaponEntity
 					@part1 = getPartAtPos(part1.pev.origin + g_Engine.v_right*64 + g_Engine.v_forward*36.95);
 					if (part1 is null)
 					{
-						println("Failed to get adjacent tri during fusion");
+						println("No se pudo obtener adyacente, intente durante la fusion");
 						return;
 					}
 					@part1 = respawnPart(part1.pev.team);
@@ -1232,7 +1232,7 @@ class weapon_hammer : ScriptBasePlayerWeaponEntity
 					(curSize == "_3x1" and DotProduct(dir, -g_Engine.v_forward) > 0.1f) or
 					(curSize == "_3x1" and DotProduct(dir, -g_Engine.v_right) > 0.1f and abs(dist - 73.899) > EPSILON))
 				{
-					cancelFuse("Can only fuse adjacent pieces");
+					cancelFuse("Solo puede fusionar piezas adyacentes");
 					return;
 				}
 
@@ -1257,7 +1257,7 @@ class weapon_hammer : ScriptBasePlayerWeaponEntity
 					@part1 = getPartAtPos(part1.pev.origin + g_Engine.v_right*-128);
 					if (part1 is null)
 					{
-						println("Failed to get adjacent tri during fusion");
+						println("No se pudo obtener adyacente, intente durante la fusion");
 						return;
 					}
 					@part1 = respawnPart(part1.pev.team);
@@ -1274,7 +1274,7 @@ class weapon_hammer : ScriptBasePlayerWeaponEntity
 					@part1 = getPartAtPos(part1.pev.origin + g_Engine.v_right*64 + g_Engine.v_forward*36.95);
 					if (part1 is null)
 					{
-						println("Failed to get adjacent tri during fusion");
+						println("No se pudo obtener adyacente, intente durante la fusion");
 						return;
 					}
 					@part1 = respawnPart(part1.pev.team);
@@ -1297,7 +1297,7 @@ class weapon_hammer : ScriptBasePlayerWeaponEntity
 			}
 			else
 			{
-				cancelFuse("Fused piece must be convex");
+				cancelFuse("La pieza fusionada debe ser convexa");
 				return;
 			}
 		}
@@ -1309,7 +1309,7 @@ class weapon_hammer : ScriptBasePlayerWeaponEntity
 			
 			if (DotProduct(g_Engine.v_right, pright) < -0.9f)
 			{
-				cancelFuse("Walls not facing the same direction");
+				cancelFuse("Tienen que apuntar a la misma direccion (R)");
 				return;
 			}
 			
@@ -1325,7 +1325,7 @@ class weapon_hammer : ScriptBasePlayerWeaponEntity
 			{
 				if (abs(dist - 128) > EPSILON)
 				{
-					cancelFuse("Can only fuse adjacent pieces");
+					cancelFuse("Solo se pueden fusionar piezas adyacentes");
 					return;
 				}
 
@@ -1351,7 +1351,7 @@ class weapon_hammer : ScriptBasePlayerWeaponEntity
 				
 				if (fuseType == B_LOW_WALL and newSize == "_1x2")
 				{
-					cancelFuse("Can only fuse adjacent pieces");
+					cancelFuse("Solo se pueden fusionar piezas adyacentes");
 					return;
 				}
 				
@@ -1362,7 +1362,7 @@ class weapon_hammer : ScriptBasePlayerWeaponEntity
 				if ((abs(dist - 128) > EPSILON and abs(dist - 181.019) > EPSILON and abs(dist - 256) > EPSILON and abs(dist - 384) > EPSILON) or
 					(abs(dist - 181.019) < EPSILON and DotProduct(pright, g_Engine.v_right) > 0.9f))
 				{
-					cancelFuse("Can only fuse adjacent pieces");
+					cancelFuse("Solo se pueden fusionar piezas adyacentes");
 					return;
 				}
 				
@@ -1388,7 +1388,7 @@ class weapon_hammer : ScriptBasePlayerWeaponEntity
 				
 				if (fuseType == B_LOW_WALL and abs(dir.z) > 0.1f)
 				{
-					cancelFuse("Can only fuse adjacent pieces");
+					cancelFuse("Solo se pueden fusionar piezas adyacentes");
 					return;
 				}
 				
@@ -1399,7 +1399,7 @@ class weapon_hammer : ScriptBasePlayerWeaponEntity
 				if (abs(dist - 128) > EPSILON and 
 					(DotProduct(dir, g_Engine.v_right) < 0.9f and abs(dist - 384) > EPSILON) )
 				{
-					cancelFuse("Can only fuse adjacent pieces");
+					cancelFuse("Solo se pueden fusionar piezas adyacentes");
 					return;
 				}
 				
@@ -1420,7 +1420,7 @@ class weapon_hammer : ScriptBasePlayerWeaponEntity
 					(curSize == "_2x1" and abs(DotProduct(dir, g_Engine.v_up)) > 0.1f) or
 					(curSize == "_1x2" and abs(DotProduct(dir, g_Engine.v_right)) > 0.1f))
 				{
-					cancelFuse("Can only fuse adjacent pieces");
+					cancelFuse("Solo se pueden fusionar piezas adyacentes");
 					return;
 				}
 				
@@ -1480,7 +1480,7 @@ class weapon_hammer : ScriptBasePlayerWeaponEntity
 			cancelFuse();
 			return;
 		}
-		cancelFuse("Sorry, can't fuse those");
+		cancelFuse("Esas no se pueden fusionar");
 	}
 
 	void PrimaryAttack()  
@@ -1500,7 +1500,7 @@ class weapon_hammer : ScriptBasePlayerWeaponEntity
 			if (validTarget)
 			{
 				if (upgrading)
-					cancelUpgrade("Upgrade cancelled");
+					cancelUpgrade("Mejora cancelada");
 				else
 				{
 					if (!forbiddenByCupboard(plr, buildEnt.pev.origin))
@@ -1510,12 +1510,12 @@ class weapon_hammer : ScriptBasePlayerWeaponEntity
 						UpgradeMenu();
 					}
 					else
-						g_PlayerFuncs.PrintKeyBindingString(plr, "Upgrades blocked by tool cupboard");
+						g_PlayerFuncs.PrintKeyBindingString(plr, "Mejora bloqueada por Tool Cupboard");
 				}
 			}
 			else
 			{
-				g_PlayerFuncs.PrintKeyBindingString(getPlayer(), "Highlight a part to upgrade it");
+				g_PlayerFuncs.PrintKeyBindingString(getPlayer(), "Apunte la parte que quiera mejorar");
 				
 				// I sometimes press a number on accident when i expect a part to be highlighted.
 				// So, always open a menu so that I don't get annoyed.
@@ -1551,17 +1551,17 @@ class weapon_hammer : ScriptBasePlayerWeaponEntity
 						g_EntityFuncs.SetModel(buildEnt2, buildEnt.pev.model);
 					}
 					else
-						g_PlayerFuncs.PrintKeyBindingString(plr, "Fusing blocked by tool cupboard");
+						g_PlayerFuncs.PrintKeyBindingString(plr, "Fusion bloqueada por Tool Cupboard");
 				}
 			}
 			else
 			{
 				if (fusing)
 				{
-					cancelFuse("No part selected to fuse with");
+					cancelFuse("Ninguna parte seleccionada para fusionar");
 				}
 				else
-					g_PlayerFuncs.PrintKeyBindingString(getPlayer(), "Highlight a part to begin fusing");
+					g_PlayerFuncs.PrintKeyBindingString(getPlayer(), "Apunta a la construccion que quieras fusionar");
 			}
 		}
 	}
@@ -1648,15 +1648,15 @@ class weapon_hammer : ScriptBasePlayerWeaponEntity
 					}
 					else
 					{
-						g_PlayerFuncs.PrintKeyBindingString(getPlayer(), "This type of part can't be rotated");
+						g_PlayerFuncs.PrintKeyBindingString(getPlayer(), "Este tipo de objeto o construccion no puede ser girado");
 					}
 				}
 				else
-					g_PlayerFuncs.PrintKeyBindingString(plr, "Rotatation blocked by tool cupboard");
+					g_PlayerFuncs.PrintKeyBindingString(plr, "Rotacion bloqueada por Tool Cupboard");
 			}
 			else
 			{
-				g_PlayerFuncs.PrintKeyBindingString(getPlayer(), "Highlight a part to rotate it");
+				g_PlayerFuncs.PrintKeyBindingString(getPlayer(), "Apunta una objeto o construccion para girarlo");
 			}
 		}
 	}
