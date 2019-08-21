@@ -1,4 +1,4 @@
-//Version en espanol por Cadaver 20/08/19
+//Version en español por Cadaver 20/08/19
 #include "utils"
 
 void upgradeMenuCallback(CTextMenu@ menu, CBasePlayer@ plr, int page, const CTextMenuItem@ item)
