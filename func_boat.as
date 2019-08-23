@@ -1,3 +1,5 @@
+//Version en espanol by Cadaver 28/01/19
+
 /*
 *	This file defines the custom entity named func_vehicle_custom
 *	This is a simple, player controllable vehicle

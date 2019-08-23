@@ -188,7 +188,7 @@ class ZoneInfo
 	{
 		if (g_build_zones.length() == 0)
 		{
-			println("Error: no build zones exist.");
+			println("Error: no existen zonas de construccion.");
 			return;
 		}
 		// each player entity counts towards limit, x2 is so each player can drop an item or spawn an effect or something.
@@ -293,7 +293,7 @@ class Team
 
 		if (overflow > 0)
 		{
-			sendMessage("Your team has too many parts! Recently built parts will be destroyed.");
+			sendMessage("Tu equipo tiene demasiadas partes construidas. Las piezas construidas recientemente seran destruidas");
 			
 			array<array<EHandle>> teamParts;
 			for (uint i = 0; i < members.size(); i++)
@@ -319,7 +319,7 @@ class Team
 				}
 				if (idx++ > 500)
 				{
-					println("Failed to delete overflow parts for team!");
+					println("Error al eliminar partes sobrantes para el equipo");
 					break;
 				}
 			}
@@ -436,28 +436,28 @@ class PlayerState
 		string msg = "";
 		switch(tipType)
 		{
-			case TIP_ACTION_MENU: msg = "Press +impulse to open the action menu"; break;
-			case TIP_HATCHET: msg = "Hatchets collect wood faster\n\nPress +impulse -> Craft -> Tools"; break;
-			case TIP_PICKAXE: msg = "Pickaxes collect stone/metal faster\n\nPress +impulse -> Craft -> Tools"; break;
-			case TIP_CUPBOARD: msg = "Tool Cupboards prevent griefing\n\nPress +impulse -> Craft -> Items"; break;
-			case TIP_PLACE_ITEMS: msg = "Place items by selecting the\n\nBuilding Plan and pressing +reload"; break;
-			case TIP_HAMMER: msg = "Upgrade your base with the Hammer\n\nPress +impulse -> Craft -> Tools"; break;
-			case TIP_SLEEP: msg = "Place a SleepingBag to respawn here\n\nPress +impulse -> Craft -> Items"; break;
-			case TIP_CHEST: msg = "Build a Chest to store excess items\n\nPress +impulse -> Craft -> Items"; break;
-			case TIP_ARMOR: msg = "Equip armor to protect yourself\n\nPress +impulse -> Craft -> Medical / Armor"; break;
-			case TIP_LOOT: msg = "A corpse is spawned when you die.\n\nPress +use on corpses to loot them."; break;
-			case TIP_LOCK_DOOR: msg = "You can place Code Locks on doors\n\nPress +impulse -> Craft -> Items"; break;
-			case TIP_LOCK_HATCH: msg = "You can place Code Locks on hatches\n\nPress +impulse -> Craft -> Items"; break;
-			case TIP_METAL: msg = "Metal is smelted in a furnace\n\nPress +impulse -> Craft -> Items"; break;
-			case TIP_FURNACE: msg = "Press +USE to open the furnace.\n\nWood and Ore is required to make metal."; break;
-			case TIP_CODE: msg = "Hold +USE on the Code Lock\n\nto open the lock menu."; break;
-			case TIP_AUTH: msg = "Press +USE to authorize yourself.\n\nHold +USE to unauthorize all users."; break;
-			case TIP_CHEST_ITEMS: msg = "Press +USE on the chest to open it"; break;
-			case TIP_FIRE_RESIST: msg = "Stone/Metal/Armor is immune to fire"; break;
-			case TIP_FUEL: msg = "Fuel is harvested from dead aliens"; break;
-			case TIP_FLAMETHROWER: msg = "Equip Fuel to load the Flamethrower\n\nPress +impulse -> Equip -> Fuel"; break;
-			case TIP_PLAN: msg = "Craft a Building Plan to build\n\nPress +impulse -> Craft -> Tools"; break;
-			case TIP_SCRAP: msg = "Collect Scrap from blue barrels"; break;
+			case TIP_ACTION_MENU: msg = "Presiona F para abrir el menu"; break;
+			case TIP_HATCHET: msg = "El hacha recoge madera mas rapido\n\nPresiona F -> Craftear -> Herramientas"; break;
+			case TIP_PICKAXE: msg = "El pico recoge la piedra mas rapido\n\nPresiona F -> Craftear -> Herramientas"; break;
+			case TIP_CUPBOARD: msg = "Tool Cupboard se usa para\nque solo tu decidas quien\npuede construir en la zona\nPresiona F -> Craftear -> Items interiores"; break;
+			case TIP_PLACE_ITEMS: msg = "Pon items usando el plano\n\n cambiando de modo con la letra R"; break;
+			case TIP_HAMMER: msg = "Mejora tu base con el martillo\n\nPresiona F -> Craftear -> Herramientas"; break;
+			case TIP_SLEEP: msg = "Pon un saco de dormir en tu base\npara tener un punto de reaparicion\nPresiona F -> Craftear -> Items interiores"; break;
+			case TIP_CHEST: msg = "Craftea un baul para guardar items\n\nPresiona F -> Craftear -> Items interiores"; break;
+			case TIP_ARMOR: msg = "El armor parts aumenta \ntu proteccion (baterias)\n\nPresiona F -> Craftear -> Utilidades"; break;
+			case TIP_LOOT: msg = "Cuando mueres tu cuerpo queda en el \nlugar donde moriste.\nPresiona E en el para lootearlo."; break;
+			case TIP_LOCK_DOOR: msg = "Pon un Code Lock en tus puertas\npara que se abra mediante un codigo\n\nPresiona F -> Craftear -> Items interiores"; break;
+			case TIP_LOCK_HATCH: msg = "Pon un Code Lock en tus trampillas\n\nPresiona F -> Craftear -> Items interiores"; break;
+			case TIP_METAL: msg = "El metal se funde en los hornos\n\nPresiona F -> Craftear -> Items interiores"; break;
+			case TIP_FURNACE: msg = "Presiona F para abrir el horno\n\n Madera y Ore se usa para hacer metal."; break;
+			case TIP_CODE: msg = "Mantene E en los Code Locks\n\npara abrir un menu"; break;
+			case TIP_AUTH: msg = "Presiona E para autorizarte\n\nMantene E para desautorizar a todos."; break;
+			case TIP_CHEST_ITEMS: msg = "Presiona E para abrir los baules"; break;
+			case TIP_FIRE_RESIST: msg = "Piedra/Metal/Armor es \ninmune al fuego"; break;
+			case TIP_FUEL: msg = "El Fuel se consigue carneando los\n bichos, una vez muertos"; break;
+			case TIP_FLAMETHROWER: msg = "Equipate con Fuel para cargar el Lanzallamas\n\nPresiona F -> Equipar -> Fuel"; break;
+			case TIP_PLAN: msg = "Craftea un Plano para construir\n\nPresiona F -> Craftear -> Herramientas"; break;
+			case TIP_SCRAP: msg = "Scrap se consigue de los barriles."; break;
 		}
 		
 		if (msg.Length() > 0)
@@ -544,7 +544,7 @@ class PlayerState
 		{
 			CBasePlayer@ p = cast<CBasePlayer@>(plr.GetEntity());
 			initMenu(p, dummyCallback);
-			menu.AddItem("Closing menu...", any(""));
+			menu.AddItem("Cerrando menu...", any(""));
 			openMenu(p, 1);
 		}
 	}
@@ -648,7 +648,7 @@ class PlayerState
 		{
 			BuildZone@ zone = getBuildZone(home_zone);
 			CBasePlayer@ p = cast<CBasePlayer@>(plr.GetEntity());
-			string msg = "Your base in zone " + zone.id + " was completely destroyed. You can rebuild in any zone.\n";
+			string msg = "Tu base que estaba en zona " + zone.id + " fue completamente destruida. Ahora puedes construir en cualquier zona.\n";
 			if (team !is null)
 			{
 				team.sendMessage(msg);
@@ -1297,13 +1297,13 @@ void tallyVotes()
 		g_mode_select = selection;
 		if (selection == 0)
 		{
-			g_PlayerFuncs.SayTextAll(getAnyPlayer(), "PvP mode selected.\n");
+			g_PlayerFuncs.SayTextAll(getAnyPlayer(), "Modo PVP seleccionado.\n");
 			g_vote_state = 0;
 			g_Scheduler.SetTimeout("setupPvpMode", 3.0f);
 		}
 		else if (selection == 1)
 		{
-			g_PlayerFuncs.SayTextAll(getAnyPlayer(), "Co-op mode selected. Now vote for a difficulty level.\n");
+			g_PlayerFuncs.SayTextAll(getAnyPlayer(), "Modo Co-op seleccionado. Ahora vota para la dificultad.\n");
 			g_vote_state = 2;
 			waiting_for_voters = true;
 			g_PlayerFuncs.RespawnAllPlayers(true, true);
@@ -1312,7 +1312,7 @@ void tallyVotes()
 		}
 		else if (selection == 2)
 		{
-			g_PlayerFuncs.SayTextAll(getAnyPlayer(), "Creative mode selected.\n");
+			g_PlayerFuncs.SayTextAll(getAnyPlayer(), "Modo creativo seleccionado.\n");
 			g_vote_state = 0;
 			g_Scheduler.SetTimeout("setupCreativeMode", 3.0f);
 		}
@@ -1320,7 +1320,7 @@ void tallyVotes()
 	}
 	else if (g_vote_state == 2)
 	{
-		int selection = getVoteSelection(op1_votes, op2_votes, op3_votes, "Easy", "Medium", "Hard");
+		int selection = getVoteSelection(op1_votes, op2_votes, op3_votes, "Facil", "Medio", "Dificil");
 		if (selection == -1)
 		{
 			waiting_for_voters = true;
@@ -1329,11 +1329,11 @@ void tallyVotes()
 		
 		g_difficulty = selection;
 		if (selection == 0)
-			g_PlayerFuncs.SayTextAll(getAnyPlayer(), "Easy mode selected.\n");
+			g_PlayerFuncs.SayTextAll(getAnyPlayer(), "Modo facil seleccionado.\n");
 		else if (selection == 1)
-			g_PlayerFuncs.SayTextAll(getAnyPlayer(), "Medium mode selected.\n");
+			g_PlayerFuncs.SayTextAll(getAnyPlayer(), "Modo medio seleccionado.\n");
 		else if (selection == 2)
-			g_PlayerFuncs.SayTextAll(getAnyPlayer(), "Hard mode selected.\n");
+			g_PlayerFuncs.SayTextAll(getAnyPlayer(), "Modo dificil seleccionado.\n");
 			
 		g_Scheduler.SetTimeout("setupInvasionMode", 3.0f);
 	}
@@ -1343,53 +1343,53 @@ int getVoteSelection(int votes1, int votes2, int votes3, string op1, string op2,
 {
 	if (votes1 + votes2 + votes3 == 0)
 	{
-		g_PlayerFuncs.SayTextAll(getAnyPlayer(), "Nobody voted. Stand in a green room to vote.\n");
+		g_PlayerFuncs.SayTextAll(getAnyPlayer(), "Nadie voto... Tienen que quedarse en el cuarto verde para votar.\n");
 		return -1;
 	}
 	else if (votes1 == votes2 and votes2 == votes3)
 	{
-		g_PlayerFuncs.SayTextAll(getAnyPlayer(), "The vote was evenly split. A random mode will be chosen.\n");
+		g_PlayerFuncs.SayTextAll(getAnyPlayer(), "Se detectaron dos votos con cantidades iguales. Una opcion aleatoria se seleccionara.\n");
 		return Math.RandomLong(0, 2);
 	}
 	else if (votes1 == votes2 and votes1 > 0)
 	{
 		if (votes3 > 0) {
-			g_PlayerFuncs.SayTextAll(getAnyPlayer(), "The vote is tied between " + op1 + " and " + op2 + ". Vote again.\n");
+			g_PlayerFuncs.SayTextAll(getAnyPlayer(), "La votacion esta empatada con " + op1 + " y " + op2 + ". Voten de nuevo.\n");
 			CBaseEntity@ block = g_EntityFuncs.FindEntityByTargetname(null, "option3_block");
 			block.pev.solid = SOLID_BSP;
 			block.pev.rendercolor = Vector(255, 0, 0);
 			g_PlayerFuncs.RespawnAllPlayers(true, true);
 			return -1;
 		} else {
-			g_PlayerFuncs.SayTextAll(getAnyPlayer(), "The vote is tied between " + op1 + " and " + op2 + ". A random option will be chosen.\n");
+			g_PlayerFuncs.SayTextAll(getAnyPlayer(), "La votacion esta empatada con " + op1 + " y " + op2 + ". Una opcion aleatoria se seleccionara.\n");
 			return Math.RandomLong(0, 1);
 		}
 	}
 	else if (votes1 == votes3 and votes1 > 0)
 	{
 		if (votes2 > 0) {
-			g_PlayerFuncs.SayTextAll(getAnyPlayer(), "The vote is tied between " + op1 + " and " + op3 + ". Vote again.\n");
+			g_PlayerFuncs.SayTextAll(getAnyPlayer(), "La votacion esta empatada con " + op1 + " y " + op3 + ". Voten de nuevo.\n");
 			CBaseEntity@ block = g_EntityFuncs.FindEntityByTargetname(null, "option2_block");
 			block.pev.solid = SOLID_BSP;
 			block.pev.rendercolor = Vector(255, 0, 0);
 			g_PlayerFuncs.RespawnAllPlayers(true, true);
 			return -1;
 		} else {
-			g_PlayerFuncs.SayTextAll(getAnyPlayer(), "The vote is tied between " + op1 + " and " + op3 + ". A random option will be chosen.\n");
+			g_PlayerFuncs.SayTextAll(getAnyPlayer(), "La votacion esta empatada con " + op1 + " y " + op3 + ". Una opcion aleatoria se seleccionara.\n");
 			return Math.RandomLong(0, 1)*2;
 		}
 	}
 	else if (votes2 == votes3 and votes2 > 0)
 	{
 		if (votes1 > 0) {
-			g_PlayerFuncs.SayTextAll(getAnyPlayer(), "The vote is tied between " + op2 + " and " + op3 + ". Vote again.\n");
+			g_PlayerFuncs.SayTextAll(getAnyPlayer(), "La votacion esta empatada con " + op2 + " y " + op3 + ". Voten de nuevo.\n");
 			CBaseEntity@ block = g_EntityFuncs.FindEntityByTargetname(null, "option1_block");
 			block.pev.solid = SOLID_BSP;
 			block.pev.rendercolor = Vector(255, 0, 0);
 			g_PlayerFuncs.RespawnAllPlayers(true, true);
 			return -1;
 		} else {
-			g_PlayerFuncs.SayTextAll(getAnyPlayer(), "The vote is tied between " + op2 + " and " + op3 + ". A random option will be chosen.\n");
+			g_PlayerFuncs.SayTextAll(getAnyPlayer(), "La votacion esta empatada con " + op2 + " y " + op3 + ". Una opcion aleatoria se seleccionara.\n");
 			return Math.RandomLong(2, 3);
 		}
 	}
@@ -1407,7 +1407,7 @@ void cast_vote(CBaseEntity@ pActivator, CBaseEntity@ pCaller, USE_TYPE useType, 
 	{
 		waiting_for_voters = false;
 		resetVoteTimer();
-		g_PlayerFuncs.SayTextAll(getAnyPlayer(), "Vote started!\n");
+		g_PlayerFuncs.SayTextAll(getAnyPlayer(), "La votacion comenzo!\n");
 	}
 }
 
@@ -1445,7 +1445,7 @@ void startGame()
 	} while (ent !is null);
 	
 	if (g_invasion_mode) {
-		g_PlayerFuncs.SayTextAll(getAnyPlayer(), "Invasion starts in " + g_invasion_initial_delay + " minutes\n");
+		g_PlayerFuncs.SayTextAll(getAnyPlayer(), "La invasion comenzara en " + g_invasion_initial_delay + " minutos\n");
 		updateWaveTimer();
 	}
 }
@@ -1455,10 +1455,10 @@ void showGameModeTip()
 	//PrintKeyBindingStringAllLong("TIP:\n\nPress +missionbriefing to learn how to play");
 	if (g_invasion_mode)
 	{
-		PrintKeyBindingStringAllLong("Build a base before the invasion starts.\n\nYou lose when your base is destroyed.");
+		PrintKeyBindingStringAllLong("Construye una base antes de que comience la invasion.\n\nPierdes cuando tu base es completamente destruida.");
 	}
 
-	g_Scheduler.SetTimeout("PrintKeyBindingStringAllLong", 20.0f, "TIP: Press +missionbriefing to learn how to do stuff");
+	g_Scheduler.SetTimeout("PrintKeyBindingStringAllLong", 20.0f, "TIP: Presiona F2, Mission Briefing\n para obtener mas ayuda.");
 	g_Scheduler.SetTimeout("showTipAll", 7.0f, int(TIP_ACTION_MENU));
 }
 
@@ -1508,7 +1508,7 @@ void setupInvasionMode()
 	CBaseEntity@ randomZoneEnt = g_build_zone_ents[rand];
 	func_build_zone@ randomZone = cast<func_build_zone@>(CastToScriptClass(randomZoneEnt));
 	g_invasion_zone = randomZoneEnt;
-	println("Starting invasion mode in zone " + randomZone.id);
+	println("Iniciando modo invasion en la zona: " + randomZone.id);
 	
 	for (uint i = 0; i < g_build_zone_ents.size(); i++)
 	{
@@ -1658,7 +1658,7 @@ void updateWaveStatus()
 	g_wave_in_progress = checkWaveStatus();
 	if (!g_wave_in_progress and old_state)
 	{
-		g_PlayerFuncs.SayTextAll(getAnyPlayer(), "Wave defeated. " + invasion_wave_titles[g_invasion_round] + " are coming next.");
+		g_PlayerFuncs.SayTextAll(getAnyPlayer(), "Ola derrotada. " + invasion_wave_titles[g_invasion_round] + " vienen a continuacion.");
 	}
 	
 	if (g_wave_in_progress and g_build_parts.length() == 0)
@@ -1677,7 +1677,7 @@ void updateWaveStatus()
 		
 		equipAllPlayers();
 		
-		g_PlayerFuncs.SayTextAll(getAnyPlayer(), "You win! Destroy what's left of your base to end the game.\n");
+		g_PlayerFuncs.SayTextAll(getAnyPlayer(), "Tu ganas! Destruye lo que queda de tu base para finalizar el juego.\n");
 		g_EntityFuncs.FireTargets("game_win_sound", null, null, USE_TOGGLE);
 		for (uint i = 0; i < g_build_parts.length(); i++)
 		{
@@ -1709,16 +1709,16 @@ void spawnInvasionWave()
 	float extrahealth = zone.SpawnInvasionWave(invasion_waves[g_invasion_round]);
 	string penalty = "";
 	if (extrahealth > 0) { 
-		penalty = " (+" + extrahealth + " health from living monsters in previous wave)";
+		penalty = " (+" + extrahealth + " de salud de los monstruos vivos en la ola anterior)";
 	}
 	
-	g_PlayerFuncs.SayTextAll(getAnyPlayer(), "Wave " + (g_invasion_round+1) + " - " + invasion_wave_titles[g_invasion_round] + penalty + "\n");
+	g_PlayerFuncs.SayTextAll(getAnyPlayer(), "Ola " + (g_invasion_round+1) + " - " + invasion_wave_titles[g_invasion_round] + penalty + "\n");
 	
 	g_invasion_round++;
 	
 	if (isFinalWave)
 	{
-		g_PlayerFuncs.SayTextAll(getAnyPlayer(), "Final wave! Kill all monsters to win.\n");
+		g_PlayerFuncs.SayTextAll(getAnyPlayer(), "Ola final! Mata a todos los monstruos para ganar.\n");
 		clearTimer();
 	}
 	else
@@ -2024,7 +2024,7 @@ void cleanup_map()
 						details += " " + g_items[type].title + " x" + ent.pev.button;
 					}
 					orphans.insertLast(EHandle(ent));
-					println("Found orphaned item at " + ent.pev.origin.ToString() + " " + details);
+					println("Objeto huerfano encontrado en " + ent.pev.origin.ToString() + " " + details);
 				}
 			}
 		}
@@ -2043,14 +2043,14 @@ bool doRustCommand(CBasePlayer@ plr, const CCommand@ args)
 	{
 		if (args[0] == ".version")
 		{
-			g_PlayerFuncs.SayText(plr, "Script version: v11 (August, 2019)");
+			g_PlayerFuncs.SayText(plr, "Script version: v11 (August, 2019) [Traducido por Cadaver]");
 			return true;
 		}
 		if (args[0] == ".day")
 		{
 			if (!isAdmin)
 			{
-				g_PlayerFuncs.SayText(plr, "You don't have access to that command, peasent\n");
+				g_PlayerFuncs.SayText(plr, "Comando solo para admins.\n");
 				return true;
 			}
 			day_night_cycle.day();
@@ -2060,7 +2060,7 @@ bool doRustCommand(CBasePlayer@ plr, const CCommand@ args)
 		{
 			if (!isAdmin)
 			{
-				g_PlayerFuncs.SayText(plr, "You don't have access to that command, peasent\n");
+				g_PlayerFuncs.SayText(plr, "Comando solo para admins.\n");
 				return true;
 			}
 			day_night_cycle.night();
@@ -2070,13 +2070,13 @@ bool doRustCommand(CBasePlayer@ plr, const CCommand@ args)
 		{
 			if (!isAdmin)
 			{
-				g_PlayerFuncs.SayText(plr, "You don't have access to that command, peasent\n");
+				g_PlayerFuncs.SayText(plr, "Comando solo para admins.\n");
 				return true;
 			}
 			if (args.ArgC() > 1)
 			{
 				day_night_cycle.setSpeed(atof(args[1]));
-				g_PlayerFuncs.SayTextAll(plr, "The day/night cycle speed was set to " + atof(args[1]) + "\n");
+				g_PlayerFuncs.SayTextAll(plr, "La velocidad del ciclo del dia/noche es " + atof(args[1]) + "\n");
 			}
 			return true;
 		}
@@ -2084,7 +2084,7 @@ bool doRustCommand(CBasePlayer@ plr, const CCommand@ args)
 		{
 			if (!isAdmin)
 			{
-				g_PlayerFuncs.SayText(plr, "You don't have access to that command, peasent\n");
+				g_PlayerFuncs.SayText(plr, "Comando solo para admins.\n");
 				return true;
 			}
 			spawn_heli();
@@ -2094,10 +2094,10 @@ bool doRustCommand(CBasePlayer@ plr, const CCommand@ args)
 		{
 			if (!isAdmin)
 			{
-				g_PlayerFuncs.SayText(plr, "You don't have access to that command, peasent\n");
+				g_PlayerFuncs.SayText(plr, "Comando solo para admins.\n");
 				return true;
 			}
-			g_PlayerFuncs.SayTextAll(plr, "Saving map state (expect server lag)\n");
+			g_PlayerFuncs.SayTextAll(plr, "Guardando mapa.. (Lag)\n");
 			g_Scheduler.SetTimeout("saveMapData", 0.5f);
 			return true;
 		}
@@ -2105,10 +2105,10 @@ bool doRustCommand(CBasePlayer@ plr, const CCommand@ args)
 		{
 			if (!isAdmin)
 			{
-				g_PlayerFuncs.SayText(plr, "You don't have access to that command, peasent\n");
+				g_PlayerFuncs.SayText(plr, "Comando solo para admins.\n");
 				return true;
 			}
-			g_PlayerFuncs.SayTextAll(plr, "Loading map state\n");
+			g_PlayerFuncs.SayTextAll(plr, "Cargando mapa..\n");
 			loadMapData();
 			return true;
 		}
@@ -2116,7 +2116,7 @@ bool doRustCommand(CBasePlayer@ plr, const CCommand@ args)
 		{
 			if (!isAdmin)
 			{
-				g_PlayerFuncs.SayText(plr, "You don't have access to that command, peasent\n");
+				g_PlayerFuncs.SayText(plr, "Comando solo para admins.\n");
 				return true;
 			}
 			spawn_airdrop();
@@ -2126,7 +2126,7 @@ bool doRustCommand(CBasePlayer@ plr, const CCommand@ args)
 		{
 			if (!isAdmin)
 			{
-				g_PlayerFuncs.SayText(plr, "You don't have access to that command, peasent\n");
+				g_PlayerFuncs.SayText(plr, "Comando solo para admins.\n");
 				return true;
 			}
 			printVisibleEnts(plr);
@@ -2136,12 +2136,12 @@ bool doRustCommand(CBasePlayer@ plr, const CCommand@ args)
 		{
 			if (!isAdmin)
 			{
-				g_PlayerFuncs.SayText(plr, "You don't have access to that command, peasent\n");
+				g_PlayerFuncs.SayText(plr, "Comando solo para admins.\n");
 				return true;
 			}
 			if (!plr.IsAlive() or plr.pev.flags & FL_NOTARGET != 0)
 			{
-				g_PlayerFuncs.SayText(plr, "Can't spawn items when dead or if notarget is enabled");
+				g_PlayerFuncs.SayText(plr, "No puede generar elementos cuando esta muerto o si tiene notarget activado");
 				return true;
 			}
 			if (args.ArgC() > 2)
@@ -2166,7 +2166,7 @@ bool doRustCommand(CBasePlayer@ plr, const CCommand@ args)
 				if (item !is null)
 				{
 					giveItem(plr, item.type, amt, false, true, true);
-					g_PlayerFuncs.SayTextAll(plr, "" + plr.pev.netname + " gave " + amt + " " + item.title + " to self\n");
+					g_PlayerFuncs.SayTextAll(plr, "" + plr.pev.netname + " dio " + amt + " " + item.title + " a si mismo.\n");
 				}
 			}
 			return true;
@@ -2175,7 +2175,7 @@ bool doRustCommand(CBasePlayer@ plr, const CCommand@ args)
 		{
 			if (!isAdmin)
 			{
-				g_PlayerFuncs.SayText(plr, "You don't have access to that command, peasent\n");
+				g_PlayerFuncs.SayText(plr, "Comando solo para admins.\n");
 				return true;
 			}
 			println("Cleanup started");
@@ -2202,7 +2202,7 @@ bool doRustCommand(CBasePlayer@ plr, const CCommand@ args)
 			float delta = (state.lastBreakAll + 1.0f) - g_Engine.time;
 			if (delta > 0)
 			{
-				g_PlayerFuncs.SayText(plr, "Wait " + int(delta + 1) + " seconds before using this command again\n");
+				g_PlayerFuncs.SayText(plr, "Espera " + int(delta + 1) + " segundos para usar este comando de nuevo\n");
 				return true;
 			}
 			array<EHandle> parts = getPartsByOwner(plr);
@@ -2220,9 +2220,9 @@ bool doRustCommand(CBasePlayer@ plr, const CCommand@ args)
 			}
 			
 			if (count > 0)
-				g_PlayerFuncs.SayText(plr, "Destroying parts built by you\n");
+				g_PlayerFuncs.SayText(plr, "Destruyendo construcciones construidas por ti\n");
 			else
-				g_PlayerFuncs.SayText(plr, "You haven't built any parts\n");
+				g_PlayerFuncs.SayText(plr, "No tienes ninguna construccion.\n");
 			
 			
 			state.lastBreakAll = g_Engine.time + delay;
@@ -2439,22 +2439,22 @@ bool doRustCommand(CBasePlayer@ plr, const CCommand@ args)
 		{
 			string msg = "";
 			if (g_creative_mode)
-				msg = "Game mode: Creative";
+				msg = "Modo: Creativo";
 			else if (g_invasion_mode)
 			{
-				msg = "Game mode: Co-op (";
+				msg = "Modo: Co-op (";
 				if (g_difficulty == 0)
-					msg += "easy";
+					msg += "Facil";
 				else if (g_difficulty == 1)
-					msg += "medium";
+					msg += "Medio";
 				else if (g_difficulty == 2)
-					msg += "hard";
+					msg += "Dificil";
 				else
-					msg += "unknown difficulty";
+					msg += "Dificultad desconocida ( ._.)";
 				msg += ")";
 			}
 			else
-				msg = "Game mode: PvP";
+				msg = "Modo: PVP";
 			g_PlayerFuncs.SayText(plr, msg + "\n");
 			return true;
 		}
@@ -2462,7 +2462,7 @@ bool doRustCommand(CBasePlayer@ plr, const CCommand@ args)
 		{
 			if (!isAdmin)
 			{
-				g_PlayerFuncs.SayText(plr, "You don't have access to that command, peasent\n");
+				g_PlayerFuncs.SayText(plr, "Comando solo para admins.\n");
 				return true;
 			}
 			g_disable_ents = !g_disable_ents;
@@ -2473,7 +2473,7 @@ bool doRustCommand(CBasePlayer@ plr, const CCommand@ args)
 		{
 			if (!isAdmin)
 			{
-				g_PlayerFuncs.SayText(plr, "You don't have access to that command, peasent\n");
+				g_PlayerFuncs.SayText(plr, "Comando solo para admins.\n");
 				return true;
 			}
 			
@@ -2484,7 +2484,7 @@ bool doRustCommand(CBasePlayer@ plr, const CCommand@ args)
 				cleared += zone.ClearMonsters();
 			}
 			
-			g_PlayerFuncs.SayTextAll(plr, "Removed " + cleared + " monsters to fix lag caused by AI navigation");
+			g_PlayerFuncs.SayTextAll(plr, "Se eliminaron " + cleared + " monstruos para arreglar un poco el lag causado por ellos.");
 			return true;
 		}
 		if (state.codeTime > 0)
@@ -2493,7 +2493,7 @@ bool doRustCommand(CBasePlayer@ plr, const CCommand@ args)
 			string code = args[0];
 			if (code.Length() != 4)
 			{
-				PrintKeyBindingStringLong(plr, "ERROR:\n\nCode must be 4 digits long");
+				PrintKeyBindingStringLong(plr, "ERROR:\n\nEl codigo tiene que ser de 4 digitos");
 				return true;
 			}
 			bool digitsOk = true;
@@ -2506,7 +2506,7 @@ bool doRustCommand(CBasePlayer@ plr, const CCommand@ args)
 				}
 			}
 			if (!digitsOk) {
-				PrintKeyBindingStringLong(plr, "ERROR:\n\nCode can only contain digits (0-9)");
+				PrintKeyBindingStringLong(plr, "ERROR:\n\nEl codigo solo puede tener digitos numericos (0-9)");
 				return true;
 			}
 
@@ -2517,7 +2517,7 @@ bool doRustCommand(CBasePlayer@ plr, const CCommand@ args)
 				
 				if (ent.pev.body == 0 or state.isAuthed(ent))  // owner changing code
 				{
-					PrintKeyBindingStringLong(plr, "Code accepted. Lock engaged.");
+					PrintKeyBindingStringLong(plr, "Codigo aceptado. Bloqueo activado.");
 					lock_object(ent, code, false);
 					clearDoorAuths(ent);
 					g_SoundSystem.PlaySound(ent.edict(), CHAN_ITEM, "rust/code_lock_update.ogg", 1.0f, 1.0f, 0, 100);
@@ -2526,18 +2526,18 @@ bool doRustCommand(CBasePlayer@ plr, const CCommand@ args)
 				else // guest is unlocking
 				{ 
 					if (code == ent.pev.noise3) {
-						PrintKeyBindingStringLong(plr, "Code accepted");
+						PrintKeyBindingStringLong(plr, "Codigo aceptado");
 						g_SoundSystem.PlaySound(ent.edict(), CHAN_ITEM, "rust/code_lock_update.ogg", 1.0f, 1.0f, 0, 100);
 						state.authedLocks.insertLast(state.currentLock);
 					} else {
-						PrintKeyBindingStringLong(plr, "Incorrect code");
+						PrintKeyBindingStringLong(plr, "Codigo incorrecto");
 						g_SoundSystem.PlaySound(ent.edict(), CHAN_ITEM, "rust/code_lock_shock.ogg", 1.0f, 1.0f, 0, 100);
 						plr.TakeDamage(ent.pev, ent.pev, 10.0f, DMG_SHOCK);
 					}	
 				}
 			} 
 			else
-				PrintKeyBindingStringLong(plr, "ERROR:\n\nLock no longer exists");
+				PrintKeyBindingStringLong(plr, "ERROR:\n\nEl Codelock ya no existe.");
 			
 			return true;
 		}
@@ -2612,10 +2612,10 @@ HookReturnCode ClientJoin(CBasePlayer@ plr)
 			else
 				plr.pev.health = state.oldHealth;
 			
-			g_Scheduler.SetTimeout("sayPlayer", 1, @plr, "Welcome back. Your inventory and position have been restored.");
+			g_Scheduler.SetTimeout("sayPlayer", 1, @plr, "Bienvenido de nuevo. Tu inventario y posicion han sido restablecidos");
 		}
 		else
-			g_Scheduler.SetTimeout("sayPlayer", 1, @plr, "You lost your items because your corpse was looted or despawned.");
+			g_Scheduler.SetTimeout("sayPlayer", 1, @plr, "Perdiste tus items por que tu cuerpo fue saqueado o desaparecio");
 	}
 	
 	state.inGame = true;

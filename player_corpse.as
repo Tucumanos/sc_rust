@@ -1,3 +1,4 @@
+//Version en espanol by Cadaver 28/01/19
 
 void teleport_dead(EHandle h_plr)
 {

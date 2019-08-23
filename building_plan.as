@@ -1,4 +1,4 @@
-//Version en español por Cadaver 20/08/19
+﻿//Version en espanol por Cadaver 20/08/19
 #include "utils"
 
 float EPSILON = 0.03125f;
@@ -1928,4 +1928,3 @@ class weapon_building_plan : ScriptBasePlayerWeaponEntity
 		self.m_flTimeWeaponIdle = WeaponTimeBase() + 10; // how long till we do this again.
 	}
 }
-

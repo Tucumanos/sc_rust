@@ -1,3 +1,4 @@
+//Version en espanol by Cadaver 28/01/19
 
 DayNightCycle day_night_cycle;
 float g_brightness;

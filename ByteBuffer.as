@@ -1,3 +1,5 @@
+//Version en espanol by Cadaver 28/01/19
+
 class ByteBuffer
 {
 	array<uint8> data; // output encoded in escape characters ("\xFF")

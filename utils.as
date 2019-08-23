@@ -696,7 +696,7 @@ string getItemDisplayName(CBaseEntity@ item)
 {
 	if (item.pev.classname == "player_corpse" or item.IsPlayer())
 	{
-		return "" + item.pev.netname + "'s corpse";
+		return "" + item.pev.netname + " cuerpo";
 	}
 	int type = item.pev.colormap-1;
 	if (type >= 0 and type < ITEM_TYPES)

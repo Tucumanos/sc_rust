@@ -1,3 +1,4 @@
+//Version en espanol by Cadaver 28/01/19
 
 class monster_c4 : ScriptBaseEntity
 {

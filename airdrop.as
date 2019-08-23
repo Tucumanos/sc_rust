@@ -1,3 +1,4 @@
+//Version en espanol by Cadaver 28/01/19
 
 // items are randomly chosen from this list when filling the crate
 array<RawItem> supply_items = {

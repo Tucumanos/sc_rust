@@ -1,3 +1,5 @@
+//Version en espanol by Cadaver 28/01/19
+
 int g_heli_idx = 0;
 
 void heli_think(EHandle h_heli)

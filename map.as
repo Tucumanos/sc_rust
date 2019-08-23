@@ -1,5 +1,4 @@
-
-
+//Version en espanol by Cadaver 28/01/19
 // z is frame
 HUDSpriteParams getIconForEnt(PlayerState@ state, CBaseEntity@ ent)
 {

@@ -69,7 +69,7 @@ void enterMenuMode(PlayerState@ state)
 	textParams.fadeoutTime = 0.0f;
 	textParams.holdTime = 5.0f;
 	textParams.channel = 4;
-	g_PlayerFuncs.HudMessage(plr, textParams, "Left Click = Craft\nRight Click = Exit Menu");
+	g_PlayerFuncs.HudMessage(plr, textParams, "Click izquierdo = Craftear\nClick Derecho = Salir");
 }
 
 // returns currently selected item id

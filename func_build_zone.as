@@ -1,3 +1,5 @@
+//Version en espanol by Cadaver 28/01/19
+
 class BuildZone
 {
 	int numRaiderParts = 0; // number of total build parts in this zone
